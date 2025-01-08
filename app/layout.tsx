@@ -3,6 +3,7 @@ import './globals.css'
 import Header from '@/components/layouts/header/Header'
 import Footer from '@/components/layouts/Footer'
 import OpenBagProvider from '@/providers/OpenBagProvider'
+import { ClerkProvider } from '@clerk/nextjs'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,13 +17,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <OpenBagProvider>
-        <body>
-          <Header/>
-          <div className=' mt-[155px]'>{children}</div>
-          <Footer/>
-        </body>
-      </OpenBagProvider>
+      <ClerkProvider
+        publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY as string}
+        appearance={{
+          layout: { 
+            socialButtonsVariant: 'iconButton',
+            logoImageUrl: '/assets/images/logo_mini.png'
+          },
+        }}
+      >
+        <OpenBagProvider>
+          <body>
+            <Header/>
+            <div className=' mt-[155px]'>{children}</div>
+            <Footer/>
+          </body>
+        </OpenBagProvider>
+      </ClerkProvider>
     </html>
   )
 }

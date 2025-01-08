@@ -14,11 +14,11 @@ export const getProductBySlug = async (slug: string) => {
     }
 }
 
-export const getProductById = async (_id: string) => {
+export const getProductById = async (id: string) => {
     try {
-        let path=`/products/${_id}`
+        let path=`/products/${id}`
         const response = await httpRequest.get(path)
-        
+        //console.log(response.data)
         return response.data
     }
     catch (error) {

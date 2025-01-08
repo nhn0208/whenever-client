@@ -5,7 +5,7 @@ export const getAllModel = async () => {
     try {
         let path = '/models'
         const response = await httpRequest.get(path);
-        console.log(response);
+        //console.log(response);
         
         return response.data;
     } catch (error) {
@@ -17,7 +17,7 @@ export const getModelBySlug = async (slug: string) => {
     try {
         let path=`/models/${slug}`
         const response = await httpRequest.get(path)
-        console.log(response.data)
+        //console.log(response.data)
         return response.data
     }
     catch (error) {
@@ -26,9 +26,9 @@ export const getModelBySlug = async (slug: string) => {
     }
 }
 
-export const getModelById = async (_id: string) => {
+export const getModelById = async (id: string) => {
     try {
-        let path=`/models/${_id}`
+        let path=`/models/${id}`
         const response = await httpRequest.get(path)
         
         return response.data
@@ -43,7 +43,7 @@ export const getModelByCategory = async (category: string) => {
     try {
         let path=`/models/category/${category}`
         const response = await httpRequest.get(path)
-        console.log(response)
+        //console.log(response)
         return response.data
     }
     catch (error) {
