@@ -10,11 +10,9 @@ interface ModelCardProps {
 const ModelCard = (
     { model} : ModelCardProps
 ) => {
-    const router = useRouter();
-    
   return (
-    <div
-    onClick={()=> router.push(`/products/${model.slug}`)}    
+    <a
+    href={`/products/${model.slug}`}
      className="w-[330px] h-[440px] flex flex-col p-4 items-center justify-between
        hover:border-2 hover:border-[#ffc001] group" >
         <p className='font-bold text-center invisible group-hover:visible' >{model.name}</p>
@@ -27,7 +25,7 @@ const ModelCard = (
         />
         </div>
         <p className='w-full text-xs text-right invisible group-hover:visible'>{formatToVND(model.price)}</p>
-    </div>
+    </a>
   )
 }
 

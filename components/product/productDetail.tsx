@@ -21,8 +21,10 @@ const ProductDetail = ({userId}: ProductDetailProps) => {
     const [ products, setProducts ] = useState<ProductProps[] | undefined>()
     const [productId, setProductId] = useState<string>('');
     useEffect(()=>{
-        getModelBySlug(parts[parts.length -1]).then(data=>setModel(data[0]))
-        getProductByModelSlug(parts[parts.length -1]).then(data=>setProducts(data))
+        getModelBySlug(parts[parts.length -1]).then(data=>{
+            setModel(data)
+            setProducts(data.products)
+        })
     },[])
   return (
     <div className="w-full">

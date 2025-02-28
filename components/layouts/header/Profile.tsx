@@ -7,6 +7,7 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
 import { SignOutButton } from "@clerk/nextjs"
+import Link from "next/link"
   
 
 const Profile = () => {
@@ -16,8 +17,12 @@ const Profile = () => {
         <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>profile</DropdownMenuItem>
-            <DropdownMenuItem>orders</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={"/profile"}>profile</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={"/orders"}>orders</Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>
                 <SignOutButton><h1 className="font-bold">sign out</h1></SignOutButton>
             </DropdownMenuItem>

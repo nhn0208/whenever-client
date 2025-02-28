@@ -40,9 +40,9 @@ const Sidebar = () => {
         >
             {
                 categories.map((category,index)=>(
-                    <Link key={index} href={category.href}>
+                    <a key={index} href={category.href}>
                         <span className="hover:font-bold">{category.name}</span>
-                    </Link>
+                    </a>
                 ))
             }
         </div>

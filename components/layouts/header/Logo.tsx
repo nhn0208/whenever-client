@@ -3,9 +3,9 @@ import Link from 'next/link'
 
 const Logo = () => {
   return (
-    <Link href={'/'}>
+    <a href={'/'}>
         <Image src="/assets/images/logo.png" alt='' width={286} height={59}/>
-    </Link>
+    </a>
   )
 }
 

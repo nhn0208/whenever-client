@@ -9,7 +9,7 @@ const Login =  ({userId}:{userId: string | null}) => {
       {userId ? (
         <Profile />
       ):(
-        <Link href={'/sign-in'}>login</Link>
+        <a href={'/sign-in'}>login</a>
       )}
     </div>
   )

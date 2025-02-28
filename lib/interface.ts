@@ -7,9 +7,8 @@ export interface ProductProps {
     sold: number,
     price: number,
     _id: string,
-    collectionId: string,
+    modelId: ModelProps,
     slug: string,
-    modelSlug: string,
 }
 
 export interface ModelProps {
@@ -19,13 +18,13 @@ export interface ModelProps {
     category: string,
     slug: string,
     price: number,
-    products: string[]
+    products: ProductProps[]
     _id: string,
 }
 
 export interface CartProps {
     customerId: string,
-    productId: string,
+    productId: ProductProps,
     quantity: number,
     _id: string,
 }
