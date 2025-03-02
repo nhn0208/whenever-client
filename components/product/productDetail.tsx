@@ -10,11 +10,12 @@ import { formatToVND } from "@/lib/format"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import AddToCartButton from "@/components/AddToCartButton"
+import { useLogin } from "@/providers/LoginProvider"
 
-interface ProductDetailProps {
-    userId: string | null
-}
-const ProductDetail = ({userId}: ProductDetailProps) => {
+const ProductDetail = () => {
+
+    const { auth } = useLogin();
+
     const pathname = usePathname();
     const parts = pathname.split("/")
     const [ model, setModel ] = useState<ModelProps | undefined>()
@@ -66,7 +67,7 @@ const ProductDetail = ({userId}: ProductDetailProps) => {
                         </div>
                     </div>
                     <div>
-                    <AddToCartButton productId={productId} userId={userId}/>
+                    <AddToCartButton productId={productId}/>
                     </div>
                     <p className="text-lg font-semibold uppercase font-mono">Mô tả sản phẩm</p>
                     <p className="whitespace-pre-line font-mono text-base">{model?.description}</p>

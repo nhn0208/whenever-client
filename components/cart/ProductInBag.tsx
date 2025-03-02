@@ -15,7 +15,29 @@ interface ModelInBagProps {
 }
 
 const ProductInBag = ({cart, setPrice}: ModelInBagProps) => {
-    const {reload, setReload } = useOpenBag()
+    const { setReload } = useOpenBag()
+
+    const handleIncrease = async () => {
+        increaseProductInCart(cart._id)
+        .then(()=>{
+            setPrice(prev=> prev += cart.productId.price)
+            setReload(prev=>!prev)        
+        })
+    }
+    const handleDecrease = async () => {
+        decreaseProductInCart(cart._id).then(()=>{
+            setPrice(prev=> prev -= cart.productId.price)
+            setReload(prev=>!prev)   
+        })
+    }
+    const handleDelete = async () => {
+        deleteProductInCart(cart._id)
+        .then(()=>{
+            setPrice(prev=> prev -= cart.productId.price * cart.quantity)
+            setReload(prev=>!prev)
+        })
+    }
+
     useEffect(()=>{
         setPrice(prev => prev += cart.productId.price * cart.quantity)
     },[])
@@ -23,11 +45,7 @@ const ProductInBag = ({cart, setPrice}: ModelInBagProps) => {
         <div className="w-full text-[12px]">
         <div className="w-full relative flex items-center justify-between p-2 gap-4">
             <X
-                onClick={()=>{
-                    setPrice(prev=> prev -= cart.productId.price * cart.quantity)
-                    deleteProductInCart(cart._id)
-                    setReload(prev=>!prev)
-                }} 
+                onClick={()=>handleDelete()} 
                 width={16} height={16} 
                 className="absolute top-0 right-0 cursor-pointer" 
             />
@@ -51,22 +69,14 @@ const ProductInBag = ({cart, setPrice}: ModelInBagProps) => {
                 <div
                 
                 className={cn('border-r-2 border-black px-1 cursor-pointer', cart.quantity <= 1 && 'pointer-events-none opacity-50')}
-                onClick={()=>{
-                    setPrice(prev=> prev -= cart.productId.price)
-                    decreaseProductInCart(cart._id)
-                    setReload(prev=>!prev)
-                }}
+                onClick={()=>handleDecrease()}
                 >
                     -
                 </div>
                 <p className='px-1'>{cart.quantity}</p>
                 <div 
                 className='border-l-2 border-black px-1 cursor-pointer'
-                onClick={()=>{
-                    setPrice(prev=> prev += cart.productId.price)
-                    increaseProductInCart(cart._id)
-                    setReload(prev=>!prev)
-                }}
+                onClick={()=>handleIncrease()}
                 >
                     +
                 </div>

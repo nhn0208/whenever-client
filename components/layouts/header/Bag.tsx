@@ -15,18 +15,25 @@ import {
 } from "@/components/ui/sheet"
 import { useOpenBag } from "@/providers/OpenBagProvider"
 import { formatToVND } from '@/lib/format'
+import { useLogin } from '@/providers/LoginProvider'
 
-const Bag = ({userId}:{userId: string}) => {
+const Bag = () => {
+    const { auth } = useLogin()
     const [ carts,setCarts] = useState<CartProps[]>([])
     const {  reload } = useOpenBag()
     const [totalPrice, setTotalPrice] = useState<number>(0)
     const [open,setOpen] = useState<boolean>(false)
     useEffect(()=>{
-        getAllCartByCustomerId(userId)
+        if (auth)
+        getAllCartByCustomerId(auth?._id)
         .then(data => {
             setCarts(data)
         })
     },[reload])
+
+    useEffect(()=>{
+        setTotalPrice(0)
+    },[open])
     
   return (
     <Sheet open={open} onOpenChange={setOpen}>

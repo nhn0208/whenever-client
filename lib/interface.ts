@@ -33,3 +33,9 @@ export interface ClerkAuthProviderProps {
     user: string | null,
     setUser: React.Dispatch<React.SetStateAction<string | null>>;
 }
+
+export interface User {
+    _id: string,
+    username: string,
+    role: string
+}

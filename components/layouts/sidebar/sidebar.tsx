@@ -1,4 +1,13 @@
 import { ChevronDown } from "lucide-react"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+  } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
 
 const categories = [
@@ -30,23 +39,28 @@ const categories = [
 
 const Sidebar = () => {
   return (
-    <div className="group relative h-10">
-        <div className="flex items-center gap-2">
-            <h1 className="font-bold">Sản phẩm</h1>
-            <ChevronDown width={20} height={20}/>
-        </div>
-        <div className="hidden group-hover:flex flex-col absolute top-8 left-0 
-        w-[224px] h-[300px] border border-gray-300 gap-y-4 p-8"
-        >
-            {
-                categories.map((category,index)=>(
-                    <a key={index} href={category.href}>
-                        <span className="hover:font-bold">{category.name}</span>
-                    </a>
+    <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+            <div className="flex items-center gap-2 cursor-pointer">
+                <h1 className="font-bold">Sản phẩm</h1>
+                <ChevronDown width={20} height={20}/>
+            </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+            <DropdownMenuGroup className="flex flex-col  gap-y-4">
+            
+            {categories.map((category,index)=>(
+                    <Link key={index} href={category.href} className="hover:font-bold">
+                        <DropdownMenuItem>
+                            <span >{category.name}</span>
+                        </DropdownMenuItem>
+                    </Link>
                 ))
             }
-        </div>
-    </div>
+            </DropdownMenuGroup>
+        </DropdownMenuContent>
+    </DropdownMenu>
+
   )
 }
 

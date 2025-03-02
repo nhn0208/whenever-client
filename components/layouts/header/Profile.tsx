@@ -1,31 +1,45 @@
+import { logout } from "@/app/api/Auth"
 import {
     DropdownMenu,
     DropdownMenuContent,
+    DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-import { SignOutButton } from "@clerk/nextjs"
 import Link from "next/link"
   
 
 const Profile = () => {
+  const handleLogout = async () => {
+    logout().then(()=>{
+      window.location.reload()
+    })
+  }
   return (
     <DropdownMenu>
-        <DropdownMenuTrigger><h1>profile</h1></DropdownMenuTrigger>
+        <DropdownMenuTrigger asChild><h1>profile</h1></DropdownMenuTrigger>
         <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href={"/profile"}>profile</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href={"/orders"}>orders</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-                <SignOutButton><h1 className="font-bold">sign out</h1></SignOutButton>
-            </DropdownMenuItem>
+            <DropdownMenuGroup>
+              <Link href={"/profile"}>
+                <DropdownMenuItem>
+                  profile
+                </DropdownMenuItem>
+                </Link>
+              <Link href={"/orders"}>
+                <DropdownMenuItem>
+                  orders
+                </DropdownMenuItem>
+              </Link>
+              <h1 className="font-bold cursor-pointer" onClick={()=>handleLogout()}>
+                <DropdownMenuItem>
+                    sign out
+                </DropdownMenuItem>
+              </h1>
+            </DropdownMenuGroup>
         </DropdownMenuContent>
     </DropdownMenu>
   )

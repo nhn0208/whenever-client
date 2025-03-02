@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import Header from '@/components/layouts/header/Header'
-import Footer from '@/components/layouts/Footer'
 import OpenBagProvider from '@/providers/OpenBagProvider'
-import { ClerkProvider } from '@clerk/nextjs'
+import LoginProvider from '@/providers/LoginProvider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,23 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ClerkProvider
-        publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY as string}
-        appearance={{
-          layout: { 
-            socialButtonsVariant: 'iconButton',
-            logoImageUrl: '/assets/images/logo_mini.png'
-          },
-        }}
-      >
+      <body>
         <OpenBagProvider>
-          <body>
-            <Header/>
-            <div className=' mt-[155px]'>{children}</div>
-            <Footer/>
-          </body>
+          <LoginProvider>
+            {children}
+          </LoginProvider>
         </OpenBagProvider>
-      </ClerkProvider>
+      </body>
     </html>
   )
 }

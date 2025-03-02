@@ -2,29 +2,27 @@ import React from 'react'
 import { Button } from './ui/button'
 import { addProductToCart } from '@/app/api/Cart'
 import { useOpenBag } from '@/providers/OpenBagProvider'
-import { redirect, useRouter } from 'next/navigation'
+import { useLogin } from '@/providers/LoginProvider'
 
 interface Props {
   productId: string | null,
-  userId: string | null
 }
 
 const AddToCartButton = (
-  { productId, userId } : Props
+  { productId } : Props
 ) => {
-  const { setOpen,setReload } = useOpenBag()
-  const router = useRouter()
+  const { auth , setOpenLogin } = useLogin()
+  const { setReload } = useOpenBag()
   const handleAddButton = () => {
     //console.log(productId)
-    if (userId == null) {
-      router.push('/sign-in')
+    if (!auth) {
+      setOpenLogin(true)
     }
-    if (userId && productId != '') {
-      addProductToCart({customerId: userId,productId: productId}).then((data)=>{
+    if (auth && productId != '') {
+      addProductToCart({customerId: auth._id,productId: productId}).then(()=>{
         setReload(prev=>!prev)
         //console.log(data)
       })
-      setOpen(true)
     }
   }
   return (

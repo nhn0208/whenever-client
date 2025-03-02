@@ -14,17 +14,20 @@ import { getAllCartByCustomerId } from '@/app/api/Cart';
 import ProductInCheckout from './ProductInCheckout';
 import { createNewOrder } from '@/app/api/Order';
 import { useRouter } from 'next/navigation';
+import { useLogin } from '@/providers/LoginProvider';
+import { useOpenBag } from '@/providers/OpenBagProvider';
 
 enum paymentEnum {
   COD = 'COD',
   BANKING = 'BANKING'
 }
 
-const Checkout = ({userId}:{userId: string}) => {
+const Checkout = () => {
+  const {auth} = useLogin()
+  const { reload} = useOpenBag()
   const router = useRouter();
     const [ carts,setCarts] = useState<CartProps[]>([])
     const [name,setName] = useState<string>("");
-    const [mail,setMail] = useState<string>("");
     const [phone,setPhone] = useState<string>("");
     const [address,setAddress] = useState<string>("");
     const [addressField,setAddressField] = useState<string>("");
@@ -33,15 +36,17 @@ const Checkout = ({userId}:{userId: string}) => {
     const [totalPrice, setTotalPrice] = useState<number>(0)
     const [paymentMethod, setPaymentMethod] = useState<paymentEnum>(paymentEnum.COD)
     useEffect(()=>{
-            getAllCartByCustomerId(userId)
-            .then(data => {
-                setCarts(data)
-            })
-        },[])
+      if (auth) {
+        getAllCartByCustomerId(auth._id)
+        .then(data => {
+          setCarts(data)
+        })
+      }
+    },[reload])
 
     useEffect(()=>{
-      setCompleted(name !== '' && mail !== '' && phone !== '' && address !== '' && addressField !=='' && carts.length > 0)
-    },[name,mail,phone,address,addressField])
+      setCompleted(name !== '' && phone !== '' && address !== '' && addressField !=='' && carts.length > 0)
+    },[name,phone,address,addressField])
 
     if ( invoice) {
       return (
@@ -62,61 +67,55 @@ const Checkout = ({userId}:{userId: string}) => {
   return (
       <div className='w-full flex px-20 justify-center'>
         <div className='space-y-4 w-1/2 flex flex-col items-center px-20'>
-          <div className=" w-full items-center">
+          <div className="w-full flex items-center space-x-2">
+            <div className=" w-2/3 items-center">
               <Label htmlFor="name">Họ tên</Label>
               <Input id="name" placeholder="Họ tên" className='rounded-lg' onChange={e => setName(e.target.value)}/>
             </div>
-            <div className="w-full flex items-center space-x-2">
-              <div className='w-2/3'>
-                <Label htmlFor="email">Email</Label>
-                <Input  id="email" placeholder="Emai" className='rounded-lg'  onChange={e => setMail(e.target.value)}/>
+            <div className='w-1/3'>
+              <Label htmlFor="phoneNumber">Số điện thoại</Label>
+              <Input  id="phoneNumber" placeholder="Điện thoại" className='rounded-lg'  onChange={e => setPhone(e.target.value)}/>
+            </div>
+          </div>
+          <div className="w-full items-center">
+            <Label htmlFor="address">Địa chỉ</Label>
+            <Input id="address" placeholder="Địa chỉ" className='rounded-lg'  onChange={e => setAddressField(e.target.value)}/>
+          </div>
+          <AddressComponent sendDataToParent={setAddress}/>
+          <div className='border border-gray-500 rounded-lg w-full py-8 px-4'>
+            <RadioGroup value={paymentMethod} onValueChange={value => setPaymentMethod(value as paymentEnum)}>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value={paymentEnum.COD} id="r1"  />
+                <Label htmlFor="r1" className='text-gray-500'>Thanh toán khi giao hàng (COD)</Label>
               </div>
-              <div className='w-1/3'>
-                <Label htmlFor="phoneNumber">Số điện thoại</Label>
-                <Input  id="phoneNumber" placeholder="Điện thoại" className='rounded-lg'  onChange={e => setPhone(e.target.value)}/>
-              </div>
-            </div>
-            <div className="w-full items-center">
-              <Label htmlFor="address">Địa chỉ</Label>
-              <Input id="address" placeholder="Địa chỉ" className='rounded-lg'  onChange={e => setAddressField(e.target.value)}/>
-            </div>
-            <AddressComponent sendDataToParent={setAddress}/>
-            <div className='border border-gray-500 rounded-lg w-full py-8 px-4'>
-              <RadioGroup value={paymentMethod} onValueChange={value => setPaymentMethod(value as paymentEnum)}>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value={paymentEnum.COD} id="r1"  />
-                  <Label htmlFor="r1" className='text-gray-500'>Thanh toán khi giao hàng (COD)</Label>
-                </div>
-              </RadioGroup>
-            </div>
-            <div className='flex justify-between w-full pt-6'>
-              <Link href="/cart" className="text-blue-600 text-sm">Giỏ hàng</Link>
-              <Button 
-                variant={"outline"} className='bg-blue-500 text-white p-6'
-                disabled={!completed}
-                onClick={()=> {
-                  const products: { productId: string; quantity: number; }[] = []
-                  carts.forEach( cart => {
-                    products.push( { productId: cart.productId._id, quantity: cart.quantity})
-                  })
-                  const body = {
-                    customerId: userId,
-                    products: products,
-                    name: name,
-                    email: mail,
-                    phone: phone,
-                    address: addressField + ' ' + address,
-                    price: totalPrice,
-                    feeship: address.includes("Hồ Chí Minh") ? 35000 : 45000,
-                    paymentMethod: paymentMethod,
-                  }
-
-                  createNewOrder(body).then(()=> router.push("/orders"))
-                }}
-              >
-                Đặt hàng
-              </Button>
-            </div>
+            </RadioGroup>
+          </div>
+          <div className='flex justify-between w-full pt-6'>
+            <Link href="/cart" className="text-blue-600 text-sm">Giỏ hàng</Link>
+            <Button 
+              variant={"outline"} className='bg-blue-500 text-white p-6'
+              disabled={!completed}
+              onClick={()=> {
+                const products: { productId: string; quantity: number; }[] = []
+                carts.forEach( cart => {
+                  products.push( { productId: cart.productId._id, quantity: cart.quantity})
+                })
+                const body = {
+                  customerId: auth?._id,
+                  products: products,
+                  name: name,
+                  phone: phone,
+                  address: addressField + ' ' + address,
+                  price: totalPrice,
+                  feeship: address.includes("Hồ Chí Minh") ? 35000 : 45000,
+                  paymentMethod: paymentMethod,
+                }
+                createNewOrder(body).then(()=> router.push("/orders"))
+              }}
+            >
+              Đặt hàng
+            </Button>
+          </div>
         </div>
         {/**Cart */}
         <div className='w-full border-l border-black p-8 pr-32'>

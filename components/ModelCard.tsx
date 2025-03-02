@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { ModelProps } from '@/lib/interface';
 import { formatToVND } from '@/lib/format'
+import Link from 'next/link';
 
 interface ModelCardProps {
     model : ModelProps
@@ -11,7 +12,7 @@ const ModelCard = (
     { model} : ModelCardProps
 ) => {
   return (
-    <a
+    <Link
     href={`/products/${model.slug}`}
      className="w-[330px] h-[440px] flex flex-col p-4 items-center justify-between
        hover:border-2 hover:border-[#ffc001] group" >
@@ -25,7 +26,7 @@ const ModelCard = (
         />
         </div>
         <p className='w-full text-xs text-right invisible group-hover:visible'>{formatToVND(model.price)}</p>
-    </a>
+    </Link>
   )
 }
 

@@ -1,15 +1,16 @@
-import { UserButton } from '@clerk/nextjs'
-import { auth } from '@clerk/nextjs/server'
-import Link from 'next/link'
+'use client'
+import { useLogin } from '@/providers/LoginProvider'
 import Profile from './Profile'
 
-const Login =  ({userId}:{userId: string | null}) => {
+const Login =  () => {
+  const {auth, setOpenLogin} = useLogin()
+
   return (
     <div>
-      {userId ? (
+      {auth ? (
         <Profile />
       ):(
-        <a href={'/sign-in'}>login</a>
+        <p onClick={()=>setOpenLogin(true)} className='cursor-pointer'>login</p>
       )}
     </div>
   )
