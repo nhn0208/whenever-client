@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button';
-import { CartProps, ProductProps} from '@/lib/interface';
+import { CartProps} from '@/lib/interface';
 import{ useEffect, useState } from 'react'
 
 import { Label } from '@/components/ui/label';
@@ -39,7 +39,11 @@ const Checkout = () => {
       if (auth) {
         getAllCartByCustomerId(auth._id)
         .then(data => {
+          data.forEach((cart: CartProps) => {
+            setTotalPrice((prev) => prev + (cart.productId.modelId.price * cart.quantity))
+          })
           setCarts(data)
+          
         })
       }
     },[reload])
@@ -121,7 +125,7 @@ const Checkout = () => {
         <div className='w-full border-l border-black p-8 pr-32'>
           {
             carts.map((cart,index) => (
-              <ProductInCheckout key={index} cart={cart} setTotalPrice={setTotalPrice}/>
+              <ProductInCheckout key={index} cart={cart}/>
             ))
           }
 

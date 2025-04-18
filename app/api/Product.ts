@@ -14,17 +14,17 @@ export const getProductBySlug = async (slug: string) => {
     }
 }
 
-// export const getProductById = async (id: string) => {
-//     try {
-//         let path=`/products/${id}`
-//         const response = await httpRequest.get(path)
-//         return response
-//     }
-//     catch (error) {
-//         console.log("Error fetching data",error);
+export const getProductById = async (id: string) => {
+    try {
+        let path=`/products/${id}`
+        const response = await httpRequest.get(path)
+        return response
+    }
+    catch (error) {
+        console.log("Error fetching data",error);
         
-//     }
-// }
+    }
+}
 
 export const getProductByModelId = async (id: string) => {
     try {
