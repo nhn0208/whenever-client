@@ -7,7 +7,7 @@ export const getAllCartByCustomerId = async (customerId: string) => {
         const response = await httpRequest.get(path);
         //console.log(response.data);
         
-        return response.data;
+        return response
     } catch (error) {
         console.log("Error fetching data", error);
     }

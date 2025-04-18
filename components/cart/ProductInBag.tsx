@@ -20,26 +20,26 @@ const ProductInBag = ({cart, setPrice}: ModelInBagProps) => {
     const handleIncrease = async () => {
         increaseProductInCart(cart._id)
         .then(()=>{
-            setPrice(prev=> prev += cart.productId.price)
+            setPrice(prev=> prev += cart.productId.modelId.price)
             setReload(prev=>!prev)        
         })
     }
     const handleDecrease = async () => {
         decreaseProductInCart(cart._id).then(()=>{
-            setPrice(prev=> prev -= cart.productId.price)
+            setPrice(prev=> prev -= cart.productId.modelId.price)
             setReload(prev=>!prev)   
         })
     }
     const handleDelete = async () => {
         deleteProductInCart(cart._id)
         .then(()=>{
-            setPrice(prev=> prev -= cart.productId.price * cart.quantity)
+            setPrice(prev=> prev -= cart.productId.modelId.price * cart.quantity)
             setReload(prev=>!prev)
         })
     }
 
     useEffect(()=>{
-        setPrice(prev => prev += cart.productId.price * cart.quantity)
+        setPrice(prev => prev += cart.productId.modelId.price * cart.quantity)
     },[])
     return (
         <div className="w-full text-[12px]">
@@ -52,7 +52,7 @@ const ProductInBag = ({cart, setPrice}: ModelInBagProps) => {
             <>
                       <div className="w-[100px]">
                           <Image
-                              src={cart.productId.image || '/assets/images/logo_mini.png'}
+                              src={cart.productId.modelId.image[0] || '/assets/images/logo_mini.png'}
                               alt=""
                               width={640}
                               height={640}
@@ -60,9 +60,9 @@ const ProductInBag = ({cart, setPrice}: ModelInBagProps) => {
                           />
                       </div>
                       <div className="w-[180px]">
-                          <h1 className="w-[180px] font-semibold">{cart.productId.name}</h1>
+                          <h1 className="w-[180px] font-semibold">{cart.productId.modelId.name}</h1>
                           <p>{cart.productId.size}</p>
-                          <p>{formatToVND(cart.productId.price)}</p>
+                          <p>{formatToVND(cart.productId.modelId.price)}</p>
                       </div>
                       </>
             <div className='flex border-2 border-black dark:border-white space-x-1'>

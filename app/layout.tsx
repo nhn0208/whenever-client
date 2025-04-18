@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import OpenBagProvider from '@/providers/OpenBagProvider'
 import LoginProvider from '@/providers/LoginProvider'
+import LoginPopUp from '@/components/login/LoginPopUp'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body>
         <OpenBagProvider>
           <LoginProvider>
+            <LoginPopUp/>
             {children}
           </LoginProvider>
         </OpenBagProvider>

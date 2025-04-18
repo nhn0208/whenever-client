@@ -1,14 +1,8 @@
 export interface ProductProps {
-    name: string,
-    image: string,
-    type: string,
     size: string,
     instock: number,
-    sold: number,
-    price: number,
     _id: string,
     modelId: ModelProps,
-    slug: string,
 }
 
 export interface ModelProps {
@@ -18,7 +12,7 @@ export interface ModelProps {
     category: string,
     slug: string,
     price: number,
-    products: ProductProps[]
+    products: ProductProps[],
     _id: string,
 }
 

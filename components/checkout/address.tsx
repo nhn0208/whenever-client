@@ -38,15 +38,15 @@ const AddressComponent = ({ sendDataToParent } : { sendDataToParent : any }) => 
                     aria-expanded={openCity}
                     className="w-full justify-between"
                   >
-                    {tinhThanh !== '' && tinhThanh === address.find((tinh: { Name: string }) => tinh.Name === tinhThanh)?.Name
-                      ? address.find((tinh: { Name: string }) => tinh.Name === tinhThanh)?.Name
+                    {tinhThanh !== '' && tinhThanh === address.find((tinh) => tinh.Name === tinhThanh)?.Name
+                      ? address.find((tinh) => tinh.Name === tinhThanh)?.Name
                       : "Chọn tỉnh thành"}
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-full p-0 h-[255px] overflow-y-scroll space-x-4">
                     <h3 className='bold pl-4 pt-2'>Chọn tỉnh thành</h3>
-                {address.map((tinh: { Name: number | bigint | boolean | SetStateAction<string> | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<AwaitedReactNode> | null | undefined },index: Key | null | undefined)=>(
+                {address.map((tinh,index)=>(
                             <div key={index}  className='flex items-center pl-2 py-2 '>
                                 <span
                                 onClick={()=>{
@@ -76,15 +76,15 @@ const AddressComponent = ({ sendDataToParent } : { sendDataToParent : any }) => 
                     aria-expanded={openDistrict}
                     className="w-full justify-between"
                   >
-                    {quanHuyen !== '' && quanHuyen === address.find((tinh: { Name: string }) => tinh.Name === tinhThanh)?.Districts.find((quan: { Name: string }) => quan.Name === quanHuyen)?.Name
-                      ? address.find((tinh: { Name: string }) => tinh.Name === tinhThanh)?.Districts.find((quan: { Name: string }) => quan.Name === quanHuyen)?.Name
+                    {quanHuyen !== '' && quanHuyen === address.find((tinh) => tinh.Name === tinhThanh)?.Districts.find((quan) => quan.Name === quanHuyen)?.Name
+                      ? address.find((tinh) => tinh.Name === tinhThanh)?.Districts.find((quan) => quan.Name === quanHuyen)?.Name
                       : "Chọn quận huyện"}
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-full p-0 h-[255px] overflow-y-scroll space-x-4">
                 <h3 className='bold pl-4 pt-2'>Chọn quận huyện</h3>
-                {address.find((tinh: { Name: string }) => tinh.Name === tinhThanh)?.Districts.map((quan: { Name: number | bigint | boolean | SetStateAction<string> | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<AwaitedReactNode> | null | undefined },index: Key | null | undefined)=>(
+                {address.find((tinh) => tinh.Name === tinhThanh)?.Districts.map((quan,index)=>(
                             <div key={index} className='flex items-center pl-2 py-2'>
                                 <span  onClick={()=>{
                                     setQuanHuyen(quan.Name)
@@ -112,14 +112,14 @@ const AddressComponent = ({ sendDataToParent } : { sendDataToParent : any }) => 
                     className="w-full justify-between"
                   >
                     {phuongXa !== ''
-                      ? address.find((tinh: { Name: string }) => tinh.Name === tinhThanh)?.Districts.find((quan: { Name: string }) => quan.Name === quanHuyen)?.Wards.find((phuong: { Name: string })=>  phuong.Name === phuongXa)?.Name
+                      ? address.find((tinh) => tinh.Name === tinhThanh)?.Districts.find((quan) => quan.Name === quanHuyen)?.Wards.find((phuong)=>  phuong.Name === phuongXa)?.Name
                       : "Chọn phường xã"}
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-full p-0 h-[255px] overflow-y-scroll space-x-4">
                 <h3 className='bold pl-4 pt-2'>Chọn phường xã</h3>
-                {address.find((tinh: { Name: string }) => tinh.Name === tinhThanh)?.Districts.find((quan: { Name: string }) => quan.Name === quanHuyen)?.Wards.map((phuong: { Name: number | bigint | boolean | SetStateAction<string> | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<AwaitedReactNode> | null | undefined },index: Key | null | undefined)=>(
+                {address.find((tinh) => tinh.Name === tinhThanh)?.Districts.find((quan) => quan.Name === quanHuyen)?.Wards.map((phuong,index)=>(
                             <div key={index} className='flex items-center pl-2 py-2'>
                                 <span  onClick={()=>{
                                     setPhuongXa(phuong.Name? phuong.Name : '')

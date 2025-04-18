@@ -16,8 +16,8 @@ export const isLogin = async () => {
     try {
         let path=`/auth/check-auth`
         const response = await httpRequest.get(path)
-        //console.log(response)
-        return response.data
+        console.log(response)
+        return response
     }
     catch (error) {
         console.log("Error fetching data",error);

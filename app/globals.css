@@ -91,6 +91,17 @@ section::-webkit-scrollbar {
   }
 }
 
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
 @keyframes flip-left {
   from {
     transform: rotateY(-90deg);
@@ -120,13 +131,11 @@ section::-webkit-scrollbar {
   animation: flip-right 1s ease 0s;
 }
 
-
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+.rotate-y-90 {
+  transform: rotateY(90deg);
+  transform-origin: top;
+}
+.-rotate-y-90 {
+  transform: rotateY(-90deg);
+  transform-origin: bottom;
 }

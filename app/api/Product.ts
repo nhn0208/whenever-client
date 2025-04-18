@@ -6,7 +6,7 @@ export const getProductBySlug = async (slug: string) => {
         let path=`/products/${slug}`
         const response = await httpRequest.get(path)
         
-        return response.data
+        return response
     }
     catch (error) {
         console.log("Error fetching data",error);
@@ -14,25 +14,24 @@ export const getProductBySlug = async (slug: string) => {
     }
 }
 
-export const getProductById = async (id: string) => {
-    try {
-        let path=`/products/${id}`
-        const response = await httpRequest.get(path)
-        //console.log(response.data)
-        return response.data
-    }
-    catch (error) {
-        console.log("Error fetching data",error);
+// export const getProductById = async (id: string) => {
+//     try {
+//         let path=`/products/${id}`
+//         const response = await httpRequest.get(path)
+//         return response
+//     }
+//     catch (error) {
+//         console.log("Error fetching data",error);
         
-    }
-}
+//     }
+// }
 
 export const getProductByModelId = async (id: string) => {
     try {
         let path=`/products/model/${id}`
         const response = await httpRequest.get(path)
         
-        return response.data
+        return response
     }
     catch (error) {
         console.log("Error fetching data",error);
@@ -45,7 +44,7 @@ export const getProductByModelSlug = async (slug: string) => {
         let path=`/products/model/${slug}`
         const response = await httpRequest.get(path)
         
-        return response.data
+        return response
     }
     catch (error) {
         console.log("Error fetching data",error);

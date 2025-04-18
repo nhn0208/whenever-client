@@ -7,7 +7,7 @@ import Login from './Login'
 
 const Header = async () => {
   return (
-    <div className='w-full h-[114px] flex items-center justify-between px-10 py-5'>
+    <div className='w-full h-[114px] flex items-center justify-between px-10 py-5 bg-white'>
       <Sidebar/>
       <Logo />
       <div className='flex items-center font-bold gap-x-8'>

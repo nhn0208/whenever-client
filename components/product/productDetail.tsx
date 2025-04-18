@@ -1,7 +1,6 @@
 'use client'
 
 import { getModelBySlug } from "@/app/api/Model"
-import { getProductByModelSlug } from "@/app/api/Product"
 import { ModelProps, ProductProps } from "@/lib/interface"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -54,7 +53,7 @@ const ProductDetail = () => {
                         {products && products.map((product,index)=>(
                             <div key={index}>
                             <Button
-                            disabled={product.sold >= product.instock}
+                            disabled={product.instock === 0}
                             onClick={()=>setProductId(product._id)}
                             className={cn([
                                 "bg-white hover:bg-white border rounded-none text-black text-xs uppercase font-mono font-thin shadow-md ",

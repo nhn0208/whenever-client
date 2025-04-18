@@ -20,7 +20,7 @@ const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const [auth, setAuth] = useState<User | undefined>()
   useEffect(()=>{
       isLogin().then(data=>{
-        //console.log(data)
+        console.log(data)
         setReload(prev=>!prev)
         setAuth(data)
       })

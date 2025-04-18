@@ -5,6 +5,14 @@ const nextConfig = {
             {
             protocol: 'https',
             hostname: 'utfs.io'
+            },
+            {
+            protocol: 'https',
+            hostname: 'theme.hstatic.net'
+            },
+            {
+            protocol: 'https',
+            hostname: 'product.hstatic.net'
             }
         ]
     },
