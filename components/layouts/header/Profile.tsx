@@ -1,3 +1,4 @@
+'use client'
 import { logout } from "@/app/api/Auth"
 import {
     DropdownMenu,
@@ -8,12 +9,18 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
+import { signOut, useSession } from "next-auth/react"
 import Link from "next/link"
   
 
 const Profile = () => {
+  const {data: session} = useSession()
+  console.log(session?.user?.email)
   const handleLogout = async () => {
-    logout().then(()=>{
+    if (session) {
+      await signOut()
+    }
+    await logout().then(()=>{
       window.location.reload()
     })
   }

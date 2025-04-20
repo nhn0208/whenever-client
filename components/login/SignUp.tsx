@@ -12,6 +12,7 @@ import {
     InputOTPSeparator,
     InputOTPSlot,
   } from "@/components/ui/input-otp"
+import { normalizeGmail } from '@/lib/format'
   
 
 interface SignUpProps {
@@ -34,15 +35,6 @@ const SignUp = ({setIsSignUp}: SignUpProps) => {
   const [ isFocusedUsername ,setIsFocusedUsername] = useState<boolean>(false)
   const [ isFocusedPassword ,setIsFocusedPassword] = useState<boolean>(false)
   const [ isFocusedConfirmPassword ,setIsFocusedConfirmPassword] = useState<boolean>(false)
-
-  const normalizeGmail = (gmail: string) => {
-    let [local, domain] = gmail.toLowerCase().split('@');
-
-    if (domain === 'gmail.com') {
-        local = local.replace(/\./g, ''); 
-    }
-    return `${local}@${domain}`;
-  }
 
   const handleSubmit = async (event : any) => {
     event.preventDefault(); // Chặn reload trang

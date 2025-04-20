@@ -4,8 +4,6 @@ import SignIn from "./SignIn"
 import SignUp from "./SignUp"
 import { cn } from "@/lib/utils"
 import { useLogin } from "@/providers/LoginProvider"
-
-
 const LoginPopUp = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false)
   const { openLogin} = useLogin()

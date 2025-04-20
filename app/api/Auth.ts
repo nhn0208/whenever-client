@@ -12,11 +12,23 @@ export const login = async (body: any) => {
         
     }
 }
+
+export const loginWithGoogle = async (body: any) => {
+    try {
+        let path=`/auth/login-google`
+        const response = await httpRequest.post(path,body)
+        //console.log(response)
+        return response
+    } catch (error) {
+        console.log("Error fetching data",error);
+    }
+}
+
 export const isLogin = async () => {
     try {
         let path=`/auth/check-auth`
         const response = await httpRequest.get(path)
-        console.log(response)
+        //console.log(response)
         return response
     }
     catch (error) {

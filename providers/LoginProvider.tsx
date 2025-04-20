@@ -1,6 +1,6 @@
 'use client';
 
-import { isLogin } from "@/app/api/Auth";
+import { isLogin, loginWithGoogle } from "@/app/api/Auth";
 import { User } from "@/lib/interface";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useOpenBag } from "./OpenBagProvider";
@@ -19,11 +19,11 @@ const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const [ openLogin, setOpenLogin] = useState<boolean>(false)
   const [auth, setAuth] = useState<User | undefined>()
   useEffect(()=>{
-      isLogin().then(data=>{
-        console.log(data)
-        setReload(prev=>!prev)
-        setAuth(data)
-      })
+    isLogin().then(data=>{
+      //console.log(data)
+      setReload(prev=>!prev)
+      setAuth(data)
+    })
     },[])
 
   return (

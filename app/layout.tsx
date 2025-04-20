@@ -17,12 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <OpenBagProvider>
-          <LoginProvider>
-            <LoginPopUp/>
-            {children}
-          </LoginProvider>
-        </OpenBagProvider>
+        {children}
       </body>
     </html>
   )
