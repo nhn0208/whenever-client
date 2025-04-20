@@ -17,9 +17,7 @@ const Profile = () => {
   const {data: session} = useSession()
   console.log(session?.user?.email)
   const handleLogout = async () => {
-    if (session) {
-      await signOut()
-    }
+    await signOut()
     await logout().then(()=>{
       window.location.reload()
     })

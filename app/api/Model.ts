@@ -5,7 +5,7 @@ export const getAllModel = async () => {
     try {
         let path = '/models'
         const response = await httpRequest.get(path);
-        console.log(response);
+        //console.log(response);
         
         return response
     } catch (error) {
@@ -17,7 +17,7 @@ export const getModelBySlug = async (slug: string) => {
     try {
         let path=`/models/${slug}`
         const response = await httpRequest.get(path)
-        console.log(response)
+        //console.log(response)
         return response
     }
     catch (error) {
