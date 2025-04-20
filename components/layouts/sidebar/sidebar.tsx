@@ -13,27 +13,27 @@ import Link from "next/link"
 const categories = [
     {
         name: "shop all",
-        href: "/shop-all",
+        href: "/products/shop-all",
     },
     {
         name: "tees",
-        href: "/tees",
+        href: "/products/tees",
     },
     {
         name: "sweatshirts",
-        href: "/sweatshirts",
+        href: "/products/sweatshirts",
     },
     {
         name: "outerwear",
-        href: "/outerwear",
+        href: "/products/outerwear",
     },
     {
         name: "bottoms",
-        href: "/bottoms",
+        href: "/products/bottoms",
     },
     {
         name: "accessories",
-        href: "/accessories",
+        href: "/products/accessories",
     },
 ]
 

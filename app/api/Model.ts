@@ -51,3 +51,16 @@ export const getModelByCategory = async (category: string) => {
         
     }
 }
+
+export const getModelBySearch = async (search: string) => {
+    try {
+        let path=`/models/search/${search}`
+        const response = await httpRequest.get(path)
+        //console.log(response)
+        return response
+    }
+    catch (error) {
+        console.log("Error fetching data",error);
+        
+    }
+}

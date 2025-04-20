@@ -13,7 +13,10 @@ export interface ModelProps {
     slug: string,
     price: number,
     products: ProductProps[],
+    sold: number,
     _id: string,
+    createdAt: Date,
+    updatedAt: Date,
 }
 
 export interface CartProps {
