@@ -16,7 +16,10 @@ const nextConfig = {
             }
         ]
     },
-    reactStrictMode: false
+    reactStrictMode: false,
+    experimental: {
+        missingSuspenseWithCSRBailout: false,
+      },
 };
 
 export default nextConfig;
