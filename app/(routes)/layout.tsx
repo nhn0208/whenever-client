@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import Header from '@/components/layouts/header/Header'
 import Footer from '@/components/layouts/Footer'
@@ -14,8 +12,7 @@ const MainLayout = ({
     children: React.ReactNode
   }) => {
   return (
-    <SessionProvider>
-      <OpenBagProvider>
+    <OpenBagProvider>
         <LoginProvider>
           <LoginPopUp/>
           <div className='relative'>
@@ -25,7 +22,6 @@ const MainLayout = ({
           </div>
         </LoginProvider>
       </OpenBagProvider>
-    </SessionProvider>
   )
 }
 

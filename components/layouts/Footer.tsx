@@ -84,18 +84,6 @@ const Footer = () => {
         {/* Column 4 */}
         <div className="flex flex-col items-start">
           <h3 className="font-bold mb-2">THÔNG TIN</h3>
-          <div className="flex gap-2">
-            <img
-              src="/app-store.png"
-              alt="App Store"
-              className="w-24 h-auto"
-            />
-            <img
-              src="/google-play.png"
-              alt="Google Play"
-              className="w-24 h-auto"
-            />
-          </div>
         </div>
       </div>
     </div>
