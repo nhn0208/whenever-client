@@ -1,11 +1,11 @@
 
+import MobileProductDetail from "@/components/product/MobileProductDetail"
 import ProductDetail from "@/components/product/productDetail"
 const ProductPage = async () => {
   return (
     <div className="w-full">
-      {
-        <ProductDetail />
-      }
+      <div className="hidden lg:block"><ProductDetail /></div>
+      <div className="lg:hidden"><MobileProductDetail /></div>
     </div>
   )
 }

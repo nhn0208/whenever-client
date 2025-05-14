@@ -14,10 +14,10 @@ const ModelCard = (
   return (
     <Link
     href={`/products/${model.slug}`}
-     className="w-[330px] h-[440px] flex flex-col p-4 items-center justify-between
-       hover:border-2 hover:border-[#ffc001] group" >
-        <p className='font-bold text-center invisible group-hover:visible' >{model.name}</p>
-        <div className='w-full h-3/4'>
+     className="lg:w-[330px] lg:h-[440px] w-1/2 flex flex-col lg:p-4 items-center lg:justify-between justify-center
+       lg:hover:border-2 hover:border-[#ffc001] group" >
+        <p className='hidden lg:inline font-bold text-center invisible group-hover:visible' >{model.name}</p>
+        <div className='w-full lg:h-3/4'>
         <Image
          src={ model.image[0] || '/assets/images/logo_mini.png'}
          alt='' width={400} height={600}
@@ -25,7 +25,8 @@ const ModelCard = (
          decoding='async' data-nimg='1' priority
         />
         </div>
-        <p className='w-full text-xs text-right invisible group-hover:visible'>{formatToVND(model.price)}</p>
+        <p className='w-full font-bold text-center text-xs p-2' >{model.name}</p>
+        <p className='w-full text-xs lg:text-right text-center lg:invisible group-hover:visible'>{formatToVND(model.price)}</p>
     </Link>
   )
 }

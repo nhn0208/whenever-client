@@ -27,8 +27,8 @@ const AddressComponent = ({ sendDataToParent } : { sendDataToParent : any }) => 
     },[tinhThanh,quanHuyen,phuongXa])
 
   return (
-    <div className='w-full space-x-2 flex'>
-        <div className='w-1/3'>
+    <div className='w-full space-x-2 space-y-2 flex lg:flex-row flex-col justify-center items-center'>
+        <div className='w-full lg:w-1/3'>
             {/**Tỉnh thành */}
             <Popover open={openCity} onOpenChange={setOpenCity}>
                 <PopoverTrigger asChild>
@@ -67,7 +67,7 @@ const AddressComponent = ({ sendDataToParent } : { sendDataToParent : any }) => 
             </Popover>
         </div>
         {/**Quận huyện */}
-        <div className='w-1/3'>
+        <div className='w-full lg:w-1/3'>
             <Popover open={openDistrict} onOpenChange={setOpenDistrict}>
                 <PopoverTrigger asChild>
                   <Button
@@ -102,7 +102,7 @@ const AddressComponent = ({ sendDataToParent } : { sendDataToParent : any }) => 
             </Popover>
             </div>
             {/**Phường xã */}
-            <div className='w-1/3'>
+            <div className='w-full lg:w-1/3'>
             <Popover open={openWard} onOpenChange={setOpenWard}>
                 <PopoverTrigger asChild>
                   <Button

@@ -92,8 +92,8 @@ const ShopAllPage = () => {
         )
     }
     return (
-        <div className="w-full p-10">
-          <div className='flex items-center justify-between gap-10 mb-4'>
+        <div className="w-full py-2 px-4 lg:px-10">
+          <div className='flex items-center justify-between gap-2 mb-4 text-xs lg:text-base'>
             <div className='flex items-center gap-2'>
                 <h1 className='text-slate-500'>FILTER:</h1>
                 <DropdownMenu>
@@ -160,7 +160,7 @@ const ShopAllPage = () => {
                 </Select>
             </div>
           </div>
-          <div className='flex justify-center w-full flex-wrap px-10 gap-10'>
+          <div className='flex justify-center w-full flex-wrap lg:px-10 lg:gap-10'>
             { models ? models.map((model,index) => (
               <ModelCard key={index} model={model}/>
             )) : (

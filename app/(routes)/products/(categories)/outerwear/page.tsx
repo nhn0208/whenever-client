@@ -65,8 +65,8 @@ const OuterwearPages = () => {
     )
   }
   return (
-    <div className='w-full p-10'>
-      <div className='flex items-center justify-end gap-2'>
+    <div className='w-full py-2 px-4 lg:px-10'>
+      <div className='flex items-center justify-end gap-2 text-xs lg:text-base'>
         <h1 className='text-slate-500'>SORT BY</h1>
         <Select onValueChange={handleSortChange}> {/* Use handleSortChange */}
             <SelectTrigger className="w-[180px]">

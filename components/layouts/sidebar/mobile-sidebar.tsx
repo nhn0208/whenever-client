@@ -10,6 +10,11 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import Link from 'next/link'
+import { useLogin } from '@/providers/LoginProvider'
+import { SessionProvider, signOut } from 'next-auth/react'
+import Profile from '../header/Profile'
+import Logo from '../header/Logo'
+import { logout } from '@/app/api/Auth'
 
 const categories = [
     {
@@ -40,22 +45,53 @@ const categories = [
 
 const MobileSidebar = () => {
     const [open, setOpen] = useState(false)
+    const {auth, setOpenLogin} = useLogin()
+
+    const handleLogout = async () => {
+        await logout()
+        await signOut()
+      }
   return (
     <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger>
-        <div className=' text-primary  border-primary border rounded-full p-2 hover:opacity-80'>
+        <div className=' text-primary  border-primary p-2 hover:opacity-80'>
             <Menu width={20} height={20}/>
         </div>
         </SheetTrigger>
-        <SheetContent className="bg-white dark:bg-black">
+        <SheetContent className="bg-white w-full dark:bg-black px-0">
         <SheetHeader className='pb-8'>
-            <SheetTitle className='text-[20px]'>Menu</SheetTitle>
+            <div onClick={()=>setOpen(false)}><Logo/></div>
         </SheetHeader>
-        <div className="p-6 flex flex-col overflow-auto border-y-[2px] ">
+        <div className='bg-root w-full h-20'>
+            {
+                auth ? (
+                    
+                    <SessionProvider>
+                        <div className='w-full  flex items-center px-4 text-white'>
+                            <h1>Xin chào, {auth?.username}</h1>
+                            <p 
+                                onClick={()=>handleLogout()}
+                                className='border border-white rounded-md text-xs px-2'>
+                                    Đăng xuất
+                            </p>
+                        </div>
+                    </SessionProvider>
+                ) : (
+                    <div className='w-full h-full flex items-center justify-between px-4 text-white'>
+                        <h1>Bạn chưa đăng nhập. </h1>
+                        <p onClick={()=>{
+                            setOpenLogin(true)
+                            setOpen(false)
+                        }} className='border border-white rounded-md p-2 bg-white text-root'>Đăng nhập ngay</p>
+                    </div>
+                )
+            }
+        </div>
+        <div className="flex flex-col overflow-auto">
             {   
                 categories.map((category,index)=>(
                     <a key={index} href={category.href}>
-                        <span className="hover:font-bold">{category.name}</span>
+                        <h1 className="p-2 font-bold border-b">{category.name}</h1>
                     </a>
                 ))
             }

@@ -9,12 +9,11 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-import { signOut, useSession } from "next-auth/react"
+import { signOut } from "next-auth/react"
 import Link from "next/link"
   
 
 const Profile = () => {
-  const {data: session} = useSession()
   
   const handleLogout = async () => {
     await logout()

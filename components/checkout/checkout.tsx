@@ -69,14 +69,14 @@ const Checkout = () => {
     }
     
   return (
-      <div className='w-full flex px-20 justify-center'>
-        <div className='space-y-4 w-1/2 flex flex-col items-center px-20'>
+      <div className='w-full flex lg:px-20 justify-center px-2'>
+        <div className='space-y-4 w-full flex flex-col items-center lg:px-20'>
           <div className="w-full flex items-center space-x-2">
-            <div className=" w-2/3 items-center">
+            <div className="w-1/2 lg:w-2/3 items-center">
               <Label htmlFor="name">Họ tên</Label>
               <Input id="name" placeholder="Họ tên" className='rounded-lg' onChange={e => setName(e.target.value)}/>
             </div>
-            <div className='w-1/3'>
+            <div className='w-1/2 lg:w-1/3'>
               <Label htmlFor="phoneNumber">Số điện thoại</Label>
               <Input  id="phoneNumber" placeholder="Điện thoại" className='rounded-lg'  onChange={e => setPhone(e.target.value)}/>
             </div>
@@ -122,7 +122,7 @@ const Checkout = () => {
           </div>
         </div>
         {/**Cart */}
-        <div className='w-full border-l border-black p-8 pr-32'>
+        <div className='hidden lg:block w-full border-l border-black p-8 pr-32'>
           {
             carts.map((cart,index) => (
               <ProductInCheckout key={index} cart={cart}/>

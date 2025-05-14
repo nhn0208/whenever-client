@@ -44,7 +44,7 @@ export const SearchInput = () => {
     }, [debouncedValue]);
 
     return (
-        <div className="w-1/2 flex flex-col items-center justify-center gap-x-8 relative">
+        <div className="w-full flex flex-col items-center justify-center gap-x-8 relative">
             <div className="w-full flex justify-center relative">
                 <Search
                     width={24}

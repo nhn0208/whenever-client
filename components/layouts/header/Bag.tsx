@@ -16,6 +16,7 @@ import {
 import { useOpenBag } from "@/providers/OpenBagProvider"
 import { formatToVND } from '@/lib/format'
 import { useLogin } from '@/providers/LoginProvider'
+import { ShoppingCart } from 'lucide-react'
 
 const Bag = () => {
     const { auth } = useLogin()
@@ -39,11 +40,11 @@ const Bag = () => {
     <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger>
             <div className='relative px-4'>
-                <p className='absolute top-0 right-0 bg-red-700 rounded-full text-xs px-1'>{carts.length}</p>
-                <h1>bags</h1>
+                <p className='absolute top-0 right-0 lg:bg-root rounded-full text-xs px-1'>{carts.length}</p>
+                <ShoppingCart size={32}/>
             </div>
         </SheetTrigger>
-        <SheetContent className='px-0 bg-[#ac2622] '>
+        <SheetContent className='px-0 bg-[#ac2622] lg:w-[120] w-full'>
             <SheetHeader><SheetTitle className='text-2xl text-center'>Cart</SheetTitle></SheetHeader>
             <SheetDescription></SheetDescription>
             <div className='w-full flex flex-col'>
